@@ -2,8 +2,7 @@
 
 You can convert Flarum Forum System contents to WordPress Post-Comment System. Easy to migrate.
 
-
-[[flarum.svg|width=100px]] :arrow_right: [[wordpress.svg|width=100px]]
+<img src="flarum.svg" width="100" /> :arrow_right: <img src="wordpress.svg" width="50" />
 
 ## Why?
 
