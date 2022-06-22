@@ -25,6 +25,7 @@ define( 'FTW_APP_MIN_WP_VERSION', '5.6' );
 define( 'FTW_APP_DIR_BASE', plugin_basename( __FILE__ ) );
 define( 'FTW_APP_DIR_FILE', __FILE__ );
 define( 'FTW_APP_DIR_LNG', dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+define( 'FTW_APP_DIR_URL', plugin_dir_url( FTW_APP_DIR_FILE ) );
 
 // PHP version check has to go here because the below code uses namespaces
 if ( version_compare( PHP_VERSION, FTW_MIN_PHP_VERSION, '<' ) ) {
@@ -44,7 +45,7 @@ if ( version_compare( PHP_VERSION, FTW_MIN_PHP_VERSION, '<' ) ) {
 if ( ! class_exists( 'Flarum_To_WordPress' ) ) {
 
 	class Flarum_To_WordPress {
-
+		private $admin_page;
 		public function __construct() {
 
 			$this->initftw();
@@ -58,6 +59,7 @@ if ( ! class_exists( 'Flarum_To_WordPress' ) ) {
 			add_action( 'init', array( $this, 'ftw_languages' ) );
 			add_filter( 'plugin_action_links_' . FTW_APP_DIR_BASE, array( $this, 'ftw_add_link' ) );
 			add_action( 'admin_menu', array( $this, 'ftw_add_admin_menu' ) );
+			add_action( 'admin_enqueue_scripts', array( $this, 'add_admin_page_scripts' ) );
 		}
 
 		/**
@@ -87,14 +89,30 @@ if ( ! class_exists( 'Flarum_To_WordPress' ) ) {
 		 * It adds a menu page to the WordPress admin menu
 		 */
 		public function ftw_add_admin_menu() {
-			add_menu_page( __( 'Flarum to WordPress', 'flarum-to-wordpress' ), __( 'Flarum to WordPress', 'flarum-to-wordpress' ), 'manage_options', 'flarum-to-wordpress', array( $this, 'ftw_menu_page' ), 'dashicons-superhero', 6 );
+			$this->admin_page = add_menu_page( __( 'Flarum to WordPress', 'flarum-to-wordpress' ), __( 'Flarum to WordPress', 'flarum-to-wordpress' ), 'manage_options', 'flarum-to-wordpress', array( $this, 'ftw_menu_page' ), 'dashicons-superhero', 6 );
 		}
 
 		/**
 		 * It adds a menu item to the WordPress admin menu
 		 */
 		public function ftw_menu_page() {
-			esc_html_e( 'Flarum to WordPress', 'flarum-to-wordpress' );
+			$html      = "<div class='wrap'>";
+				$html .= '<h1>' . __( 'Flarum to WordPress', 'flarum-to-wordpress' ) . '</h1>';
+				$html .= '<div id="app"></div>';
+			$html     .= '</div>';
+
+			echo $html;
+		}
+
+		public function add_admin_page_scripts( $hook ) {
+			if ( $hook !== $this->admin_page ) {
+				return;
+			}
+			// For Debug
+			wp_enqueue_script( 'ftw', 'http://localhost:8083/flarum_to_wordpress.bundle.js', array( 'jquery' ), true, true );
+
+			// For Production
+			//wp_enqueue_script( 'ftw', plugin_dir_url( __FILE__ ) . '/dist/flarum_to_wordpress.bundle.js, array( 'jquery' ), true, true );
 		}
 
 	}
