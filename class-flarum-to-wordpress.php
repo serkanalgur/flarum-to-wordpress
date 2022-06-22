@@ -25,6 +25,7 @@ define( 'FTW_APP_MIN_WP_VERSION', '5.6' );
 define( 'FTW_APP_DIR_BASE', plugin_basename( __FILE__ ) );
 define( 'FTW_APP_DIR_FILE', __FILE__ );
 define( 'FTW_APP_DIR_LNG', dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+define( 'FTW_APP_DIR_URL', plugin_dir_url( FTW_APP_DIR_FILE ) );
 
 // PHP version check has to go here because the below code uses namespaces
 if ( version_compare( PHP_VERSION, FTW_MIN_PHP_VERSION, '<' ) ) {
@@ -94,7 +95,12 @@ if ( ! class_exists( 'Flarum_To_WordPress' ) ) {
 		 * It adds a menu item to the WordPress admin menu
 		 */
 		public function ftw_menu_page() {
-			esc_html_e( 'Flarum to WordPress', 'flarum-to-wordpress' );
+			$html      = "<div class='wrap'>";
+				$html .= '<h1>' . __( 'Flarum to WordPress', 'flarum-to-wordpress' ) . '</h1>';
+				$html .= '<div id="app"></div>';
+			$html     .= '</div>';
+
+			echo $html;
 		}
 
 	}
