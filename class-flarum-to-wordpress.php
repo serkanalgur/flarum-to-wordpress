@@ -52,7 +52,7 @@ if ( ! class_exists( 'Flarum_To_WordPress' ) ) {
 		}
 
 		public function initftw() {
-			add_action( 'init', array( $this, 'smartbee_app_languages' ) );
+			add_action( 'init', array( $this, 'ftw_languages' ) );
 			add_filter( 'plugin_action_links_' . FTW_APP_DIR_BASE, array( $this, 'ftw_add_link' ) );
 
 		}
