@@ -51,26 +51,50 @@ if ( ! class_exists( 'Flarum_To_WordPress' ) ) {
 
 		}
 
+		/**
+		 * It adds a link to the settings page in the plugin list.
+		 */
 		public function initftw() {
 			add_action( 'init', array( $this, 'ftw_languages' ) );
 			add_filter( 'plugin_action_links_' . FTW_APP_DIR_BASE, array( $this, 'ftw_add_link' ) );
-
+			add_action( 'admin_menu', array( $this, 'ftw_add_admin_menu' ) );
 		}
 
-		// Languages
+		/**
+		 * It loads the plugin's language files
+		 */
 		public function ftw_languages() {
 			load_plugin_textdomain( 'flarum-to-wordpress', false, FTW_APP_DIR_LNG );
 		}
 
-		// Settings
+		/**
+		 * It adds a link to the plugin's page in the WordPress admin area
+		 *
+		 * @param links (array) (required) An array of the existing links.
+		 *
+		 * @return The  array is being returned.
+		 */
 		public function ftw_add_link( $links ) {
 
-			// Referral Link
 			$developer_link = '<a href="https://serkanalgur.com.tr" target="_blank">Serkan Algur</a>';
 
 			array_push( $links, $developer_link );
 
 			return $links;
+		}
+
+		/**
+		 * It adds a menu page to the WordPress admin menu
+		 */
+		public function ftw_add_admin_menu() {
+			add_menu_page( __( 'Flarum to WordPress', 'flarum-to-wordpress' ), 'flarum_to_wordpress', 'manage_options', array( $this, 'ftw_menu_page' ), 'dashicons-superhero', 6 );
+		}
+
+		/**
+		 * It adds a menu item to the WordPress admin menu
+		 */
+		public function ftw_menu_page() {
+			esc_html_e( 'Flarum to WordPress', 'flaruum-to-wordpress' );
 		}
 
 	}
