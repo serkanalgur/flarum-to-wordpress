@@ -87,14 +87,14 @@ if ( ! class_exists( 'Flarum_To_WordPress' ) ) {
 		 * It adds a menu page to the WordPress admin menu
 		 */
 		public function ftw_add_admin_menu() {
-			add_menu_page( __( 'Flarum to WordPress', 'flarum-to-wordpress' ), 'flarum_to_wordpress', 'manage_options', array( $this, 'ftw_menu_page' ), 'dashicons-superhero', 6 );
+			add_menu_page( __( 'Flarum to WordPress', 'flarum-to-wordpress' ), __( 'Flarum to WordPress', 'flarum-to-wordpress' ), 'manage_options', 'flarum-to-wordpress', array( $this, 'ftw_menu_page' ), 'dashicons-superhero', 6 );
 		}
 
 		/**
 		 * It adds a menu item to the WordPress admin menu
 		 */
 		public function ftw_menu_page() {
-			esc_html_e( 'Flarum to WordPress', 'flaruum-to-wordpress' );
+			esc_html_e( 'Flarum to WordPress', 'flarum-to-wordpress' );
 		}
 
 	}
