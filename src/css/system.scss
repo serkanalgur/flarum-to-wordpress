@@ -1,197 +1,224 @@
 /** Dashboard With Flex **/
 .qtwrap {
+  display: flex;
+  flex: 1;
+  gap: 10px;
+  align-items: flex-start;
+
+
+  .postbox-container {
     display: flex;
     flex: 1;
-    gap: 10px;
-    align-items: flex-start;
-  
-  
+    flex-direction: column;
+  }
+
+  @media only screen and (max-width: 428px) {
+    flex-direction: column;
+  }
+
+  .fl20 {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 20%;
+
     @media only screen and (max-width: 428px) {
-      flex-direction: column;
-    }
-  
-    .fl20 {
-      display: flex;
-      flex-direction: column;
-      flex: 0 0 20%;
-  
-      @media only screen and (max-width: 428px) {
-        flex: 1;
-        width: 100%;
-      }
-  
-      .postbox-header {
-        padding: 5px;
-  
-        h2 {
-          margin: 0.4em !important;
-          width: 100%;
-        }
-      }
-    }
-  
-    h2 {
-      margin: 5px 0px !important;
+      flex: 1;
       width: 100%;
     }
-  
-    .floth {
-      display: flex;
-      flex: 1;
-  
-      @media only screen and (max-width: 428px) {
-        flex: 1;
+
+    .postbox-header {
+      padding: 5px;
+
+      h2 {
+        margin: 0.4em !important;
         width: 100%;
       }
-  
-  
-  
-      .postbox {
-        display: flex;
-        flex: 1;
-        flex-direction: column;
-  
-        .postbox-header {
-          padding: 5px;
-        }
-      }
     }
-  
-    .flother {
+  }
+
+  h2 {
+    margin: 0.4em !important;
+    width: 100%;
+  }
+
+  .floth {
+    display: flex;
+    flex: 1;
+
+    @media only screen and (max-width: 428px) {
+      flex: 1;
+      width: 100%;
+    }
+
+
+
+    .postbox {
       display: flex;
       flex: 1;
-    }
-  
-    .postbox-footer {
-      padding: 5px;
-      border-top: 1px solid #dedede;
-  
-      button {
-        margin-right: 5px;
+      flex-direction: column;
+
+      .postbox-header {
+        padding: 5px;
       }
     }
-  
-    .postbox {
-      .inside {
-        word-break: break-all;
-        .out {
-            text-align: center;
-            display: block;
-                img {
-                    text-align: center;
-                }
+  }
+
+  .flother {
+    display: flex;
+    flex: 1;
+  }
+
+  .postbox-footer {
+    padding: 5px;
+    border-top: 1px solid #dedede;
+
+    button {
+      margin-right: 5px;
+    }
+  }
+
+  .postbox {
+    .inside {
+      word-break: break-all;
+
+      .out {
+        text-align: center;
+        display: block;
+
+        img {
+          text-align: center;
         }
+      }
+    }
+
+  }
+
+  .actions {
+    button {
+      margin-right: 5px;
+
+      span {
+        padding: 3px;
       }
 
-    }
-  
-    .actions {
-      button {
-        margin-right: 5px;
-  
-        span {
-          padding: 3px;
-        }
-  
-        &.red-text {
-          color: red;
-          transition: all 250ms ease-in-out;
-  
-          &:hover {
-            background: red;
-            color: white;
-            border-color: red;
-  
-          }
+      &.red-text {
+        color: red;
+        transition: all 250ms ease-in-out;
+
+        &:hover {
+          background: red;
+          color: white;
+          border-color: red;
+
         }
       }
     }
-  
-    .all_created {
-      padding: 0px;
-      margin: 0px;
-  
-      .created_tests_here {
+  }
+
+  .all_created {
+    padding: 0px;
+    margin: 0px;
+
+    .created_tests_here {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      .test_start_area {
         display: flex;
-        flex-direction: column;
-        gap: 5px;
-  
-        .test_start_area {
-          display: flex;
-          flex-direction: row;
+        flex-direction: row;
+        flex: 1;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px;
+        gap: 10px;
+
+        &:nth-child(odd) {
+          background-color: #dedede;
+        }
+
+        .title_of_quiz {
+          display: inline-flex;
           flex: 1;
-          justify-content: space-between;
-          align-items: center;
-          padding: 5px;
-          gap: 10px;
-  
-          &:nth-child(odd) {
-            background-color: #dedede;
-          }
-  
-          .title_of_quiz {
-            display: inline-flex;
-            flex: 1;
-          }
-  
-          .shortcode {
-            display: inline-flex;
-            flex: 0 1 20%;
-  
-            #shortcode {
-              border: 1px solid #444;
-              border-radius: 5px;
-              padding: 5px;
-              cursor: pointer;
-            }
-          }
         }
-      }
-    }
-  
-    @media only screen and (max-width: 428px) {
-      tfoot {
-        tr {
-          display: flex;
-  
-          th {
-            &.add_row_button {
-              width: 50%;
-            }
+
+        .shortcode {
+          display: inline-flex;
+          flex: 0 1 20%;
+
+          #shortcode {
+            border: 1px solid #444;
+            border-radius: 5px;
+            padding: 5px;
+            cursor: pointer;
           }
         }
       }
     }
   }
-  
-  .dashicons.spin {
-    animation: dashicons-spin 1s infinite;
-    animation-timing-function: linear;
-    vertical-align: middle;
-  }
-  
-  @keyframes dashicons-spin {
-    0% {
-      transform: rotate(0deg);
-    }
-  
-    100% {
-      transform: rotate(360deg);
+
+  @media only screen and (max-width: 428px) {
+    tfoot {
+      tr {
+        display: flex;
+
+        th {
+          &.add_row_button {
+            width: 50%;
+          }
+        }
+      }
     }
   }
-  
-  .slide-fade-enter-active {
-    transition: all 0.3s ease-out;
+}
+
+.dashicons.spin {
+  animation: dashicons-spin 1s infinite;
+  animation-timing-function: linear;
+  vertical-align: middle;
+}
+
+@keyframes dashicons-spin {
+  0% {
+    transform: rotate(0deg);
   }
-  
-  .slide-fade-leave-active {
-    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+
+  100% {
+    transform: rotate(360deg);
   }
-  
-  .slide-fade-enter-from,
-  .slide-fade-leave-to {
-    transform: translateX(20px);
-    opacity: 0;
+}
+
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+
+/** Dashboard With Flex **/
+
+
+/** Author Info **/
+.author_info {
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+
+  .image {
+    img {
+      max-width: 100px;
+      border-radius: 50%;
+    }
   }
-  
-  /** Dashboard With Flex **/
+}
+
+/** Author Info **/

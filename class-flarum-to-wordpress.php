@@ -111,8 +111,28 @@ if ( ! class_exists( 'Flarum_To_WordPress' ) ) {
 			// For Debug
 			wp_enqueue_script( 'ftw', 'http://localhost:8083/flarum_to_wordpress.bundle.js', array( 'jquery' ), true, true );
 
+			wp_localize_script(
+				'ftw',
+				'ftw_object',
+				array(
+					'ajaxurl'  => admin_url( 'admin-ajax.php' ),
+					'language' => $this->language_strings(),
+				)
+			);
+
 			// For Production
 			//wp_enqueue_script( 'ftw', plugin_dir_url( __FILE__ ) . '/dist/flarum_to_wordpress.bundle.js, array( 'jquery' ), true, true );
+		}
+
+		public function language_strings() {
+
+			$lang_files = array(
+				'rtheme'    => __( 'Recommended Theme', 'flarum-to-wordpress' ),
+				'author'    => __( 'About Author', 'flarum-to-wordpress' ),
+				'fsettings' => __( 'Flarum Informations', 'flarum-to-wordpress' ),
+			);
+
+			return $lang_files;
 		}
 
 	}

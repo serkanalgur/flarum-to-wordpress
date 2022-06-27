@@ -12,7 +12,7 @@ module.exports = {
       "Access-Control-Allow-Origin": "*",
     },
     port: 8083,
-    allowedHosts: ["localhost", "novas.local"],
+    allowedHosts: ["localhost", "project.local"],
   },
   optimization: {
     minimize: true,
