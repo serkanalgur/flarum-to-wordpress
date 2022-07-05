@@ -27,6 +27,7 @@
               <label for="flarum_dflarum_db_portb_port">{{lang.fdbp}}</label>
               <input type="text" name="flarum_db_port" id="flarum_db_port" :placeholder="lang.fdbp" autocomplete="off" v-model="flarumData.port" />
             </div>
+
           </div>
           <div class="postbox-footer">
             <button class="button button-secondary" @click="checkDatabase">Check Database</button>

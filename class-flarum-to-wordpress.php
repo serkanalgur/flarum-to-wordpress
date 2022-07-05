@@ -110,7 +110,7 @@ if ( ! class_exists( 'Flarum_To_WordPress' ) ) {
 				return;
 			}
 			// For Debug
-			wp_enqueue_script( 'ftw', 'https://novas.local:8083/flarum_to_wordpress.bundle.js', array( 'jquery' ), true, true );
+			wp_enqueue_script( 'ftw', 'http://project.local:8083/flarum_to_wordpress.bundle.js', array( 'jquery' ), true, true );
 
 			wp_localize_script(
 				'ftw',
