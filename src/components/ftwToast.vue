@@ -1,5 +1,5 @@
 <template>
-  <div id="simpleToast" :class="isActive ? `showToast`: ''" :style="{backgroundColor:background,color:textColor}">
+  <div id="simpleToast" :class="isActive ? `showToast`: ''" :style="{backgroundColor:background || '#2271b1',color:textColor || '#ffffff'}">
     <span>{{message}}</span>
   </div>
 </template>
