@@ -109,7 +109,7 @@ if ( ! class_exists( 'Flarum_To_WordPress' ) ) {
 				return;
 			}
 			// For Debug
-			wp_enqueue_script( 'ftw', 'http://localhost:8083/flarum_to_wordpress.bundle.js', array( 'jquery' ), true, true );
+			wp_enqueue_script( 'ftw', 'https://novas.local:8083/flarum_to_wordpress.bundle.js', array( 'jquery' ), true, true );
 
 			wp_localize_script(
 				'ftw',
@@ -117,11 +117,16 @@ if ( ! class_exists( 'Flarum_To_WordPress' ) ) {
 				array(
 					'ajaxurl'  => admin_url( 'admin-ajax.php' ),
 					'language' => $this->language_strings(),
+					'security' => wp_create_nonce( 'ftw_sec' ),
 				)
 			);
 
 			// For Production
 			//wp_enqueue_script( 'ftw', plugin_dir_url( __FILE__ ) . '/dist/flarum_to_wordpress.bundle.js, array( 'jquery' ), true, true );
+		}
+
+		public function check_database_connection() {
+			check_ajax_referer( 'ftw_sec', 'security', true );
 		}
 
 		public function language_strings() {
@@ -134,6 +139,7 @@ if ( ! class_exists( 'Flarum_To_WordPress' ) ) {
 
 			return $lang_files;
 		}
+
 
 	}
 

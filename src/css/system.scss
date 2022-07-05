@@ -68,6 +68,28 @@
     flex: 1;
   }
 
+  .columnes {
+    flex-direction: column;
+  }
+
+  .columesinputs {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 5px;
+    align-content: center;
+    justify-content: center;
+
+    div {
+      display: flex;
+      flex: 1;
+
+      label {
+        flex: 20% 0 0;
+      }
+    }
+
+  }
+
   .postbox-footer {
     padding: 5px;
     border-top: 1px solid #dedede;
@@ -110,48 +132,6 @@
           color: white;
           border-color: red;
 
-        }
-      }
-    }
-  }
-
-  .all_created {
-    padding: 0px;
-    margin: 0px;
-
-    .created_tests_here {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-
-      .test_start_area {
-        display: flex;
-        flex-direction: row;
-        flex: 1;
-        justify-content: space-between;
-        align-items: center;
-        padding: 5px;
-        gap: 10px;
-
-        &:nth-child(odd) {
-          background-color: #dedede;
-        }
-
-        .title_of_quiz {
-          display: inline-flex;
-          flex: 1;
-        }
-
-        .shortcode {
-          display: inline-flex;
-          flex: 0 1 20%;
-
-          #shortcode {
-            border: 1px solid #444;
-            border-radius: 5px;
-            padding: 5px;
-            cursor: pointer;
-          }
         }
       }
     }
@@ -212,6 +192,13 @@
   align-items: flex-start;
   justify-content: flex-start;
   gap: 10px;
+
+  .info {
+    a {
+      text-decoration: none;
+      font-weight: 500;
+    }
+  }
 
   .image {
     img {

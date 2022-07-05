@@ -1,6 +1,35 @@
 <template>
   <div class="qtwrap">
-    <div class="floth">
+    <div class="floth columnes">
+      <div class="postbox-container">
+        <div class="postbox menu__area">
+          <div class="postbox-header">
+            <h2 class="pbhead" v-html="lang.fsettings" />
+          </div>
+          <div class="inside columesinputs">
+            <div>
+              <label for="flarum_db_host">Flarum DB Host</label>
+              <input type="text" name="flarum_db_host" id="flarum_db_host" autocomplete="off" />
+            </div>
+            <div>
+              <label for="flarum_db_username">Flarum DB Username</label>
+              <input type="text" name="flarum_db_username" id="flarum_db_username" autocomplete="off" />
+            </div>
+            <div>
+              <label for="flarum_db_password">Flarum DB Password</label>
+              <input type="password" name="flarum_db_password" id="flarum_db_password" autocomplete="off" />
+            </div>
+            <div>
+              <label for="flarum_dflarum_db_portb_port">Flarum DB Port</label>
+              <input type="text" name="flarum_db_port" id="flarum_db_port" autocomplete="off" value="3306" />
+            </div>
+          </div>
+          <div class="postbox-footer">
+            <button class="button button-secondary" @click="checkDatabase">Check Database</button>
+            <button class="button button-primary" @click="saveDetails">Save Details</button>
+          </div>
+        </div>
+      </div>
       <div class="postbox-container">
         <div class="postbox menu__area">
           <div class="postbox-header">
@@ -9,6 +38,7 @@
           <div class="inside">
             <!-- Content will be here-->
           </div>
+          <div class="postbox-footer"></div>
         </div>
       </div>
     </div>
@@ -83,8 +113,16 @@ export default {
       return ftw_object.language;
     },
   },
+  methods: {
+    checkDatabase() {
+      console.log("clicked");
+    },
+    saveDetails() {
+      console.log("Save Database");
+    },
+  },
   mounted() {
-    console.log(this.lang);
+    //console.log(this.lang);
   },
 };
 </script>
