@@ -8,7 +8,7 @@
  * Plugin Name: Flarum to WordPress
  * Plugin URI: http://serkanalgur.com.tr
  * Description: You can convert Flarum Forum System contents to WordPress Post-Comment System. Easy to migrate.
- * Version: 1.0
+ * Version: 1.0.0-alpha
  * Author: Serkan Algur
  * Author URI: http://serkanalgur.com.tr
  * Text Domain: flarum-to-wordpress
@@ -60,6 +60,7 @@ if ( ! class_exists( 'Flarum_To_WordPress' ) ) {
 			add_filter( 'plugin_action_links_' . FTW_APP_DIR_BASE, array( $this, 'ftw_add_link' ) );
 			add_action( 'admin_menu', array( $this, 'ftw_add_admin_menu' ) );
 			add_action( 'admin_enqueue_scripts', array( $this, 'add_admin_page_scripts' ) );
+			add_action( 'wp_ajax_check_other_database', array( $this, 'check_database_connection' ) );
 		}
 
 		/**
@@ -126,7 +127,17 @@ if ( ! class_exists( 'Flarum_To_WordPress' ) ) {
 		}
 
 		public function check_database_connection() {
-			check_ajax_referer( 'ftw_sec', 'security', true );
+			check_ajax_referer( 'ftw_sec', 'security' );
+			$fhost = sanitize_text_field( $_POST['flarum_db_host'] );
+			$ftabl = sanitize_text_field( $_POST['flarum_db_table'] );
+			$fuser = sanitize_text_field( $_POST['flarum_db_username'] );
+			$fpass = sanitize_text_field( $_POST['flarum_db_password'] );
+			$fdbpo = sanitize_text_field( $_POST['flarum_db_port'] );
+
+			$fd_bas = new wpdb( $fuser, $fpass, $ftabl, $fhost, $fhost );
+
+			echo wp_send_json_success( $fd_bas, 200 );
+			wp_die();
 		}
 
 		public function language_strings() {
@@ -135,6 +146,11 @@ if ( ! class_exists( 'Flarum_To_WordPress' ) ) {
 				'rtheme'    => __( 'Recommended Theme', 'flarum-to-wordpress' ),
 				'author'    => __( 'About Author', 'flarum-to-wordpress' ),
 				'fsettings' => __( 'Flarum Informations', 'flarum-to-wordpress' ),
+				'fdh'       => __( 'Flarum DB Host', 'flarum-to-wordpress' ),
+				'fdt'       => __( 'Flarum DB Table', 'flarum-to-wordpress' ),
+				'fdu'       => __( 'Flarum DB Username', 'flarum-to-wordpress' ),
+				'fdp'       => __( 'Flarum DB Password', 'flarum-to-wordpress' ),
+				'fdbp'      => __( 'Flarum DB Port', 'flarum-to-wordpress' ),
 			);
 
 			return $lang_files;
