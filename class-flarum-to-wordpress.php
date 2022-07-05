@@ -8,7 +8,7 @@
  * Plugin Name: Flarum to WordPress
  * Plugin URI: http://serkanalgur.com.tr
  * Description: You can convert Flarum Forum System contents to WordPress Post-Comment System. Easy to migrate.
- * Version: 1.0
+ * Version: 1.0.0-alpha
  * Author: Serkan Algur
  * Author URI: http://serkanalgur.com.tr
  * Text Domain: flarum-to-wordpress
