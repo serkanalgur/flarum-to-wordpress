@@ -92,6 +92,7 @@
       </div>
     </div>
   </div>
+  <ftw-toast :message="toastMessage" :isActive="isToastActive" />
 </template>
 
 <script>
@@ -99,13 +100,18 @@ import "@/css/system.scss";
 import siforum from "@/img/siforum.png";
 import serkanalgur from "@/img/serkan_algur.jpg";
 import github from "@/img/github.png";
+import ftwToast from "@/components/ftwToast.vue";
+
 export default {
+  components: { ftwToast },
   data() {
     return {
       currentPath: window.location.hash,
       siforum,
       serkanalgur,
       github,
+      toastMessage: "",
+      isToastActive: false,
     };
   },
   computed: {
@@ -115,7 +121,14 @@ export default {
   },
   methods: {
     checkDatabase() {
-      console.log("clicked");
+      this.isToastActive = true;
+      this.toastMessage = "Checking Database...";
+      console.log(this.isToastActive);
+      setTimeout(() => {
+        this.isToastActive = false;
+        this.toastMessage = "";
+        console.log(this.isToastActive);
+      }, 2500);
     },
     saveDetails() {
       console.log("Save Database");
